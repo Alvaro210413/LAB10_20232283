@@ -1,0 +1,129 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #0f2233;
+  color: #eef6fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header { text-align: center; max-width: 760px; }
+h1 { margin: 0 0 6px; }
+code { background: rgba(0, 0, 0, .25); padding: 1px 6px; border-radius: 4px; }
+#estado-agua { margin: 8px 0 12px; opacity: .85; }
+
+button {
+  padding: 7px 14px; border: none; border-radius: 6px;
+  color: #fff; font-weight: bold; cursor: pointer; background: #3d6b8c;
+}
+button:hover { filter: brightness(1.1); }
+.acciones { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* ---------- Tablero ---------- */
+.pecera {
+  position: relative;
+  display: grid;
+  width: min(92vw, 560px);
+  aspect-ratio: 1 / 1;
+  background: #add8e6;
+  border: 6px solid #5b7f99;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: background-color 1s linear; /* cambio de tono suave cada segundo */
+}
+.celda { border: 1px solid rgba(255, 255, 255, .35); }
+
+/* ---------- Peces dentro del tablero ---------- */
+.capa-peces {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+}
+
+.zona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 10px;
+  color: #10324a;
+  background: rgba(255, 255, 255, .18);
+}
+.zona h2 { margin: 0; }
+.zona small { opacity: .8; }
+.zona-nemo { border: 3px dashed #ff8c1a; }
+.zona-dory { border: 3px dashed #1e6fd9; }
+
+.pez { font-size: 64px; line-height: 1; animation: nadar 2.4s ease-in-out infinite; }
+.zona-dory .pez { animation-delay: -1.2s; }
+
+.contador { font-size: 42px; font-weight: bold; margin: 0; }
+
+.zona-nemo .aleta { background: #ff8c1a; }
+.zona-dory .aleta { background: #1e6fd9; }
+.aleta:active { transform: scale(.95); }
+
+@keyframes nadar {
+  0%, 100% { transform: translateX(-8px); }
+  50%      { transform: translateX(8px) ; }
+}
+
+/* =================== Pregunta 3: Drag and Drop =================== */
+.tag { padding: 1px 8px; border-radius: 10px; font-weight: bold; color: #fff; }
+.tag-nemo { background: #ff8c1a; }
+.tag-dory { background: #1e6fd9; }
+
+/* Se deja libre la franja superior (superficie) donde emergen las burbujas */
+.capa-peces.con-superficie { top: 22%; }
+.pecera::before {
+  content: "superficie";
+  position: absolute; left: 0; right: 0; top: 0; height: 22%;
+  border-bottom: 2px dashed rgba(255, 255, 255, .7);
+  background: rgba(255, 255, 255, .18);
+  color: rgba(16, 50, 74, .55);
+  font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+  display: flex; align-items: flex-end; justify-content: flex-end; padding: 4px 8px;
+  pointer-events: none;
+}
+
+.zona { transition: transform .15s, background-color .15s; }
+.zona.sobre   { background: rgba(255, 255, 255, .45); transform: scale(1.02); }
+.zona.acierto { background: rgba(46, 204, 113, .55); }
+.zona.error   { background: rgba(231, 76, 60, .5); animation: sacudir .3s; }
+.pez { font-size: 54px; }
+
+.burbuja {
+  position: absolute;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  cursor: grab;
+  z-index: 5;
+  border: 2px solid rgba(255, 255, 255, .9);
+  box-shadow: inset -5px -5px 10px rgba(0, 0, 0, .2), 0 2px 6px rgba(0, 0, 0, .25);
+  animation: emerger .6s ease-out, flotar 2s ease-in-out .6s infinite;
+}
+.burbuja::after { /* brillo */
+  content: ""; position: absolute; width: 9px; height: 9px; top: 6px; left: 7px;
+  border-radius: 50%; background: rgba(255, 255, 255, .85);
+}
+.burbuja-nemo { background: radial-gradient(circle at 35% 35%, #ffc285, #ff8c1a 70%); }
+.burbuja-dory { background: radial-gradient(circle at 35% 35%, #9cc8ff, #1e6fd9 70%); }
+.burbuja:active { cursor: grabbing; }
+.burbuja.arrastrando { opacity: .35; }
+.burbuja.regresa { animation: rebotar .45s ease-out, flotar 2s ease-in-out .45s infinite; }
+
+.contador.sube { animation: latido .3s; }
+
+@keyframes emerger { from { transform: translateY(40px) scale(.3); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes flotar  { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes rebotar { 0% { transform: scale(1.5); } 60% { transform: scale(.85); } 100% { transform: scale(1); } }
+@keyframes sacudir { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@keyframes latido  { 50% { transform: scale(1.3); } }

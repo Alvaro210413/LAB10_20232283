@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregunta 3 - Drag and Drop API: burbujas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Pregunta 3 · Drag and Drop API</h1>
+    <p>
+      Cada 2 segundos emergen burbujas desde la superficie:
+      <span class="tag tag-nemo">naranjas → Nemo</span> y <span class="tag tag-dory">azules → Dory</span>.
+      Arrástralas al área de su pez para sumar a su contador. Si caen en el área equivocada
+      o fuera del tablero, regresan a su posición inicial.
+    </p>
+  </header>
+
+  <p id="estado-agua">Tiempo sin limpiar: <span id="segundos">0</span> s · Burbujas en la superficie: <span id="num-burbujas">0</span></p>
+  <main id="contenedor-pecera"></main>
+
+  <div class="acciones">
+    <button id="btn-limpiar" type="button">🧽 Limpiar pecera (recargar)</button>
+    <button id="btn-nuevo-acuario" type="button">🐚 Cambiar de acuario (nueva pestaña)</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

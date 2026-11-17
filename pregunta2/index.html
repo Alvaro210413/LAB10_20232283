@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregunta 2 - Web Storage API: Nemo y Dory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Pregunta 2 · Web Storage API</h1>
+    <p>
+      <strong>Nemo</strong> guarda su conteo en <code>localStorage</code> (lo recuerda en cualquier pestaña / acuario).
+      <strong>Dory</strong> lo guarda en <code>sessionStorage</code> (solo lo recuerda en esta pestaña).
+      Recargar la página = limpiar la pecera.
+    </p>
+  </header>
+
+  <p id="estado-agua">Tiempo sin limpiar: <span id="segundos">0</span> s</p>
+  <main id="contenedor-pecera"></main>
+
+  <div class="acciones">
+    <button id="btn-limpiar" type="button">🧽 Limpiar pecera (recargar)</button>
+    <button id="btn-nuevo-acuario" type="button">🐚 Cambiar de acuario (nueva pestaña)</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

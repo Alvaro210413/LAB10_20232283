@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregunta 1 - DOM API: crearPecera(x)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Pregunta 1 · Document Object Model API</h1>
+    <p>La función <code>crearPecera(x)</code> construye con el DOM un tablero de <strong>x × x</strong> celdas que representa la pecera.</p>
+  </header>
+
+  <form id="form-pecera">
+    <label for="dimension">Dimensión de la pecera (x):</label>
+    <input type="number" id="dimension" min="1" max="30" value="10" required>
+    <button type="submit">Crear pecera</button>
+  </form>
+
+  <p id="info"></p>
+  <main id="contenedor-pecera"></main>
+
+  <script src="script.js"></script>
+</body>
+</html>
